@@ -2,6 +2,9 @@ package ru.job4j.tamplate;
 
 
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert;
+import java.io.IOException;
+import org.junit.Assert;
 import org.junit.Test;
 import static org.hamcrest.Matchers.is;
 import java.util.Map;
@@ -25,9 +28,13 @@ public class GeneratorTest {
         Generator generator = new GeneratorTemplate();
         String templ = "I am a ${name} ${surname}, Who are ${subject}? . ";
         Map<String, String> args = Map.of("name", "Pavel", "subject", "you");
-        String result = generator.produce(templ, args);
-        String exsample = "Недостаточнго ключей в карте для шаблона.";
-        assertThat(result, is(exsample));
+
+        try {
+            generator.produce(templ, args);
+            Assert.fail("Недостаточнго ключей в карте для шаблона.");
+        } catch (MapException thrown) {
+            Assert.assertNotEquals("", thrown.getMessage());
+        }
     }
 
     /*
@@ -38,9 +45,12 @@ public class GeneratorTest {
         Generator generator = new GeneratorTemplate();
         String templ = "I am a ${name}. ";
         Map<String, String> args = Map.of("name", "Pavel", "subject", "you","surname","Ivanov");
-        String result = generator.produce(templ, args);
-        String exsample = "В карте присутствуют лишние ключи";
-        assertThat(result, is(exsample));
+        try {
+            generator.produce(templ, args);
+            Assert.fail("В карте присутствуют лишние ключи");
+        } catch (MapException thrown) {
+            Assert.assertNotEquals("", thrown.getMessage());
+        }
     }
 
 }
