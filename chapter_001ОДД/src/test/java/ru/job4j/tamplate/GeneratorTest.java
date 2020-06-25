@@ -23,34 +23,32 @@ public class GeneratorTest {
     /*
     Тест на избыток ключей в шаблоне.
      */
-    @Test
+
+    /*public class MyTest {
+        @Test(expected = IOException.class)
+        public void testCreateTempFile() throws IOException {
+            Path tmpDir = Files.createTempDirectory("tmp");
+            tmpDir.toFile().delete();
+            Path tmpFile = Files.createTempFile(tmpDir, "test", ".txt");
+        }
+    }*/
+    @Test (expected = MapException.class)
     public void generatorTemp() {
         Generator generator = new GeneratorTemplate();
         String templ = "I am a ${name} ${surname}, Who are ${subject}? . ";
         Map<String, String> args = Map.of("name", "Pavel", "subject", "you");
-
-        try {
-            generator.produce(templ, args);
-            Assert.fail("Недостаточнго ключей в карте для шаблона.");
-        } catch (MapException thrown) {
-            Assert.assertNotEquals("", thrown.getMessage());
-        }
+        generator.produce(templ, args);
     }
 
     /*
     Тест на избыток ключей в карте.
      */
-    @Test
+    @Test (expected = MapException.class)
     public void generatorMap() {
         Generator generator = new GeneratorTemplate();
         String templ = "I am a ${name}. ";
         Map<String, String> args = Map.of("name", "Pavel", "subject", "you","surname","Ivanov");
-        try {
-            generator.produce(templ, args);
-            Assert.fail("В карте присутствуют лишние ключи");
-        } catch (MapException thrown) {
-            Assert.assertNotEquals("", thrown.getMessage());
-        }
+        generator.produce(templ, args);
     }
 
 }
