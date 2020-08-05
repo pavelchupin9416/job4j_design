@@ -104,4 +104,41 @@ public class ReportEngineTest {
                     .append(worker2.getSalary() / 73.19).append("; ");
             assertThat(booker.generate(em -> true), is(expect.toString()));
         }
+
+    @Test
+    public void whenJsonGenerated() {
+        MemStore store = new MemStore();
+        Calendar now = Calendar.getInstance();
+        Employee worker = new Employee("Ivan", now, now, 100);
+        store.add(worker);
+        ReportJson json = new ReportJson(store);
+        StringBuilder expect = new StringBuilder();
+        expect.append("{").append(System.lineSeparator())
+                .append("\"name\": ").append("\"").append(worker.getName()).append("\",").append(System.lineSeparator())
+                .append("\"hired\": ").append(worker.getHired()).append(",").append(System.lineSeparator())
+                .append("\"fired\": ").append(worker.getFired()).append(",").append(System.lineSeparator())
+                .append("\"salary\": ").append(worker.getSalary()).append(",").append(System.lineSeparator())
+                .append("}").append(System.lineSeparator());
+        assertThat(json.generate(em -> true), is(expect.toString()));
+    }
+
+    @Test
+    public void whenXmlGenerated() {
+        MemStore store = new MemStore();
+        Calendar now = Calendar.getInstance();
+        Employee worker = new Employee("Ivan", now, now, 100);
+        store.add(worker);
+        ReportXml xml = new ReportXml(store);
+        StringBuilder expect = new StringBuilder()
+                .append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>").append(System.lineSeparator())
+                .append("<employers>").append(System.lineSeparator())
+                .append("<employer>").append(System.lineSeparator())
+                    .append("<name>").append(worker.getName()).append("</name>").append(System.lineSeparator())
+                    .append("<hired>").append(worker.getHired()).append("</hired>").append(System.lineSeparator())
+                    .append("<fired>").append(worker.getFired()).append("</fired>").append(System.lineSeparator())
+                    .append("<salary>").append(worker.getSalary()).append("</salary>").append(System.lineSeparator())
+                    .append("</employer>").append(System.lineSeparator())
+                    .append("</employers>").append(System.lineSeparator());
+        assertThat(xml.generate(em -> true), is(expect.toString()));
+    }
 }
