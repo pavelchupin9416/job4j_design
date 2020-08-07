@@ -3,13 +3,14 @@ package ru.job4j.srp;
 import java.util.function.Predicate;
 import ru.job4j.srp.Employee;
 
-public class ReportEngine {
+public class ReportEngine implements Report {
     private Store store;
 
     public ReportEngine(Store store) {
         this.store = store;
     }
 
+    @Override
     public String generate(Predicate<Employee> filter) {
         StringBuilder text = new StringBuilder();
         text.append("Name; Hired; Fired; Salary");

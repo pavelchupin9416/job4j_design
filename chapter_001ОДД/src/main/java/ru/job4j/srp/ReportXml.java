@@ -7,13 +7,14 @@ import java.util.function.Predicate;
  *@author chupin
  *@since 05.08.2020
  */
-public class ReportXml {
+public class ReportXml implements Report {
     private Store store;
 
     public ReportXml(Store store) {
         this.store = store;
     }
 
+    @Override
     public String generate(Predicate<Employee> filter) {
         StringBuilder text = new StringBuilder()
                 .append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>").append(System.lineSeparator())

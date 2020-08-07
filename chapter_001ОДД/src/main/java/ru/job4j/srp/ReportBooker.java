@@ -8,13 +8,14 @@ import java.util.function.Predicate;
  *@since 05.08.2020
  */
 
-public class ReportBooker {
+public class ReportBooker implements Report {
     private Store store;
 
     public ReportBooker(Store store) {
         this.store = store;
     }
 
+    @Override
     public String generate(Predicate<Employee> filter) {
         StringBuilder text = new StringBuilder();
         text.append("Name; Hired; Fired; Salary dollars");

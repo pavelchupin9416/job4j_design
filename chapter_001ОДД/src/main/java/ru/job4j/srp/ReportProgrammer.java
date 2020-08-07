@@ -6,13 +6,14 @@ import java.util.function.Predicate;
  *@author chupin
  *@since 05.08.2020
  */
-public class ReportProgrammer {
+public class ReportProgrammer implements Report{
     private Store store;
 
     public ReportProgrammer(Store store) {
         this.store = store;
     }
 
+    @Override
     public String generate(Predicate<Employee> filter) {
         StringBuilder text = new StringBuilder();
         text.append("<html>").append(System.lineSeparator())
