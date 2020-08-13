@@ -8,15 +8,12 @@ import java.util.List;
  *@author chupin
  *@since 10.08.2020
  */
-public class Warehouse extends Storage {
+public class Warehouse implements Storage {
     private List<Food> foods = new ArrayList<>();
 
     @Override
     public void add(Food food) {
-        double shelLife = food.shellLife();
-        if (shelLife < 0.25) {
         foods.add(food);
-        }
     }
 
     @Override

@@ -8,7 +8,27 @@ package ru.job4j.lsp.storage;
 
 public class ControllQuality {
 
-public void inventory(Food food, Storage storage) {
-  storage.add(food);
+  private Storage warhouse;
+  private Storage shop;
+  private Storage trash;
+
+  public ControllQuality(Storage warhouse, Storage shop, Storage trash) {
+    this.warhouse = warhouse;
+    this.shop = shop;
+    this.trash = trash;
+  }
+
+public void inventory(Food food) {
+  double shelLife = food.shellLife();
+  if (shelLife < 0.25) {
+   warhouse.add(food);
+  } else if (0.25 <= shelLife & shelLife <= 0.75) {
+    shop.add(food);
+  } else if (shelLife > 0.75 & shelLife < 1) {
+    food.setDiscount(20);
+    shop.add(food);
+  } else if (shelLife >= 1) {
+    trash.add(food);
+  }
 }
 }

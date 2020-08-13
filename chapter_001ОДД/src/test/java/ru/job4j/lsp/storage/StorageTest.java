@@ -9,19 +9,17 @@ import java.util.Date;
 
 public class StorageTest {
 
-    @Test
+  @Test
     public void whenProductToWarehouse() {
         Warehouse warehouse = new Warehouse();
         Shop shop = new Shop();
         Trash trash = new Trash();
-        ControllQuality controllQuality = new ControllQuality();
+        ControllQuality controllQuality = new ControllQuality(warehouse, shop, trash);
         LocalDate now = LocalDate.now();
         Date created = java.sql.Date.valueOf(now.minusDays(2));
         Date expaired = java.sql.Date.valueOf(now.plusDays(8));
         Food food = new Food("Milk", expaired, created, 56, 0);
-        controllQuality.inventory(food, warehouse);
-        controllQuality.inventory(food, shop);
-        controllQuality.inventory(food, trash);
+        controllQuality.inventory(food);
         assertThat(food, is(warehouse.get(0)));
     }
 
@@ -30,14 +28,12 @@ public class StorageTest {
         Warehouse warehouse = new Warehouse();
         Shop shop = new Shop();
         Trash trash = new Trash();
-        ControllQuality controllQuality = new ControllQuality();
+        ControllQuality controllQuality = new ControllQuality(warehouse, shop, trash);
         LocalDate now = LocalDate.now();
         Date created = java.sql.Date.valueOf(now.minusDays(4));
         Date expaired = java.sql.Date.valueOf(now.plusDays(6));
         Food food = new Food("Milk", expaired, created, 56, 0);
-        controllQuality.inventory(food, warehouse);
-        controllQuality.inventory(food, shop);
-        controllQuality.inventory(food, trash);
+        controllQuality.inventory(food);
         assertThat(food, is(shop.get(0)));
     }
 
@@ -46,14 +42,12 @@ public class StorageTest {
         Warehouse warehouse = new Warehouse();
         Shop shop = new Shop();
         Trash trash = new Trash();
-        ControllQuality controllQuality = new ControllQuality();
+        ControllQuality controllQuality = new ControllQuality(warehouse, shop, trash);
         LocalDate now = LocalDate.now();
         Date created = java.sql.Date.valueOf(now.minusDays(8));
         Date expaired = java.sql.Date.valueOf(now.plusDays(2));
         Food food = new Food("Milk", expaired, created, 56, 0);
-        controllQuality.inventory(food, warehouse);
-        controllQuality.inventory(food, shop);
-        controllQuality.inventory(food, trash);
+        controllQuality.inventory(food);
         assertThat(food, is(shop.get(0)));
     }
 
@@ -62,14 +56,12 @@ public class StorageTest {
         Warehouse warehouse = new Warehouse();
         Shop shop = new Shop();
         Trash trash = new Trash();
-        ControllQuality controllQuality = new ControllQuality();
+        ControllQuality controllQuality = new ControllQuality(warehouse, shop, trash);
         LocalDate now = LocalDate.now();
         Date created = java.sql.Date.valueOf(now.minusDays(10));
         Date expaired = java.sql.Date.valueOf(now.minusDays(2));
         Food food = new Food("Milk", expaired, created, 56, 0);
-        controllQuality.inventory(food, warehouse);
-        controllQuality.inventory(food, shop);
-        controllQuality.inventory(food, trash);
+        controllQuality.inventory(food);
         assertThat(food, is(trash.get(0)));
     }
 }
