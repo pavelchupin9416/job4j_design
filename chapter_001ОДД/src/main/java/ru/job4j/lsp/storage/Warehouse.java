@@ -20,4 +20,14 @@ public class Warehouse implements Storage {
     public Food get(int index) {
         return foods.get(index);
     }
+
+    @Override
+    public boolean accept(Food food) {
+        boolean bool = false;
+        double shelLife = food.shellLife();
+        if (shelLife < 0.25) {
+            bool = true;
+        }
+        return bool;
+    }
 }

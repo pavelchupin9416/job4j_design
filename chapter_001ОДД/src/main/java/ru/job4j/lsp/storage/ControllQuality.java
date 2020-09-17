@@ -1,5 +1,8 @@
 package ru.job4j.lsp.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *Class ControllQuality класс для распделения продуктов.
  *@author chupin
@@ -8,27 +11,19 @@ package ru.job4j.lsp.storage;
 
 public class ControllQuality {
 
-  private Storage warhouse;
-  private Storage shop;
-  private Storage trash;
+  private List<Storage> storages = new ArrayList<>();
 
-  public ControllQuality(Storage warhouse, Storage shop, Storage trash) {
-    this.warhouse = warhouse;
-    this.shop = shop;
-    this.trash = trash;
+  public ControllQuality(List<Storage> storages) {
+    this.storages = storages;
   }
+
 
 public void inventory(Food food) {
-  double shelLife = food.shellLife();
-  if (shelLife < 0.25) {
-   warhouse.add(food);
-  } else if (0.25 <= shelLife & shelLife <= 0.75) {
-    shop.add(food);
-  } else if (shelLife > 0.75 & shelLife < 1) {
-    food.setDiscount(20);
-    shop.add(food);
-  } else if (shelLife >= 1) {
-    trash.add(food);
-  }
+ for (Storage stor : storages) {
+   if (stor.accept(food)) {
+     stor.add(food);
+     break;
+   }
+ }
 }
 }

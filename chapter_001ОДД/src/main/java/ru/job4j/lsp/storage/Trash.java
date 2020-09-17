@@ -20,6 +20,16 @@ public class Trash implements Storage {
     public Food get(int index) {
         return foods.get(index);
     }
+
+    @Override
+    public boolean accept(Food food) {
+        boolean bool = false;
+        double shelLife = food.shellLife();
+        if (shelLife >= 1) {
+            bool = true;
+        }
+        return bool;
+    }
     }
 
 

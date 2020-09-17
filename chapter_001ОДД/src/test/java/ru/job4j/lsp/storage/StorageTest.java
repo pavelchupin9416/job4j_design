@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 public class StorageTest {
 
@@ -14,7 +15,8 @@ public class StorageTest {
         Warehouse warehouse = new Warehouse();
         Shop shop = new Shop();
         Trash trash = new Trash();
-        ControllQuality controllQuality = new ControllQuality(warehouse, shop, trash);
+        List<Storage> storages = List.of(warehouse, shop, trash);
+        ControllQuality controllQuality = new ControllQuality(storages);
         LocalDate now = LocalDate.now();
         Date created = java.sql.Date.valueOf(now.minusDays(2));
         Date expaired = java.sql.Date.valueOf(now.plusDays(8));
@@ -28,7 +30,8 @@ public class StorageTest {
         Warehouse warehouse = new Warehouse();
         Shop shop = new Shop();
         Trash trash = new Trash();
-        ControllQuality controllQuality = new ControllQuality(warehouse, shop, trash);
+        List<Storage> storages = List.of(warehouse, shop, trash);
+        ControllQuality controllQuality = new ControllQuality(storages);
         LocalDate now = LocalDate.now();
         Date created = java.sql.Date.valueOf(now.minusDays(4));
         Date expaired = java.sql.Date.valueOf(now.plusDays(6));
@@ -42,7 +45,8 @@ public class StorageTest {
         Warehouse warehouse = new Warehouse();
         Shop shop = new Shop();
         Trash trash = new Trash();
-        ControllQuality controllQuality = new ControllQuality(warehouse, shop, trash);
+        List<Storage> storages = List.of(warehouse, shop, trash);
+        ControllQuality controllQuality = new ControllQuality(storages);
         LocalDate now = LocalDate.now();
         Date created = java.sql.Date.valueOf(now.minusDays(8));
         Date expaired = java.sql.Date.valueOf(now.plusDays(2));
@@ -56,7 +60,8 @@ public class StorageTest {
         Warehouse warehouse = new Warehouse();
         Shop shop = new Shop();
         Trash trash = new Trash();
-        ControllQuality controllQuality = new ControllQuality(warehouse, shop, trash);
+        List<Storage> storages = List.of(warehouse, shop, trash);
+        ControllQuality controllQuality = new ControllQuality(storages);
         LocalDate now = LocalDate.now();
         Date created = java.sql.Date.valueOf(now.minusDays(10));
         Date expaired = java.sql.Date.valueOf(now.minusDays(2));

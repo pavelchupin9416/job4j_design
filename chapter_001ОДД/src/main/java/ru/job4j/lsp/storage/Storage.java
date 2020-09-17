@@ -14,4 +14,6 @@ public interface Storage {
     public void add(Food food);
 
     public Food get(int index);
+
+    boolean accept(Food food);
 }
