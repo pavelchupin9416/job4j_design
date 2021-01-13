@@ -18,4 +18,9 @@ public class Car implements Transport {
     public int getSize() {
         return 1;
     }
+
+    @Override
+    public boolean IsTruck() {
+        return false;
+    }
 }
