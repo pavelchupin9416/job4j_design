@@ -11,6 +11,7 @@ import java.util.List;
 public class Parking {
 
    List<Transport> transports = new ArrayList<>();
+   List<Transport> transportsTruck = new ArrayList<>();
 
    int spotCar;
    int spotTruck;
@@ -20,40 +21,28 @@ public class Parking {
       this.spotTruck = spotTruck;
    }
 
-   /**
-    * Проверка возможности паркоки транспорта
-    * @param transport - паркующийся транспорт
-    */
-   private boolean controlPark(Transport transport) {
-      boolean result = true;
-      if (transport.IsTruck()) {
-         if ((spotTruck - 1) < 0 & (spotCar - transport.getSize()) < 0) {
-              result = false;
-         }
-      } else {
-         if (spotCar - transport.getSize() < 0) {
-            result = false;
-         }
-      }
-      return result;
-   }
 
    /**
     * Парковка транспорта
     * @param transport - паркующийся транспорт
     */
    public void park(Transport transport) throws Exception  {
-      if (controlPark(transport)) {
-         if (transport.IsTruck()) {
-            transports.add(transport);
-            spotTruck = spotTruck - transport.getSize();
-         } else {
-            transports.add(transport);
-            spotCar = spotCar - transport.getSize();
-         }
-      } else {
-         throw new Exception("На парковке нет мест!");
-      }
+     if (transport.IsTruck()) {
+        if ((spotTruck - 1) >= 0) {
+         transportsTruck.add(transport);
+         spotTruck = spotTruck - 1;
+        } else if ((spotCar - transport.getSize()) >= 0) {
+          transports.add(transport);
+          spotCar = spotCar - transport.getSize();
+        } else {
+           throw new Exception("На парковке нет мест!");
+        }
+     } else if ((spotCar - 1) >= 0) {
+        transports.add(transport);
+        spotCar = spotCar - 1;
+     } else {
+        throw new Exception("На парковке нет мест!");
+     }
    }
 
    /**
@@ -61,6 +50,11 @@ public class Parking {
     * @param transport - уезжающий транспорт
     */
    public void leave(Transport transport) {
-      transports.remove(transport);
+      if (transport.IsTruck()) {
+          transportsTruck.remove(transport);
+          transports.remove(transport);
+      } else {
+          transports.remove(transport);
+      }
    }
 }

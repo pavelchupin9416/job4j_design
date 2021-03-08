@@ -17,7 +17,6 @@ public class ParkingTest {
         parking.park(truck);
         List<Transport> vehicles = new ArrayList<>();
         vehicles.add(car);
-        vehicles.add(truck);
         assertThat(vehicles, is(parking.transports));
     }
 
@@ -35,13 +34,28 @@ public class ParkingTest {
     @Test
     public void leave() throws Exception {
         Car car = new Car("фк345а");
-        Truck truck = new Truck("ар435о", 2);
+        Car car2 = new Car("ар435о");
         Parking parking = new Parking(5, 1);
         parking.park(car);
-        parking.park(truck);
-        parking.leave(truck);
+        parking.park(car2);
+        parking.leave(car2);
         List<Transport> vehicles = new ArrayList<>();
         vehicles.add(car);
         assertThat(vehicles, is(parking.transports));
+    }
+
+    @Test
+    public void leaveTruck() throws Exception {
+        Truck truck = new Truck("ар455о", 20);
+        Truck truck2 = new Truck("ар435о", 2);
+        Truck truck3 = new Truck("ар895о", 2);
+        Parking parking = new Parking(5, 2);
+        parking.park(truck);
+        parking.park(truck2);
+        parking.park(truck3);
+        parking.leave(truck2);
+        List<Transport> vehicles = new ArrayList<>();
+        vehicles.add(truck);
+        assertThat(vehicles, is(parking.transportsTruck));
     }
 }
