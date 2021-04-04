@@ -25,8 +25,4 @@ public class Truck implements Transport {
         return size;
     }
 
-    @Override
-    public boolean IsTruck() {
-        return true;
-    }
 }

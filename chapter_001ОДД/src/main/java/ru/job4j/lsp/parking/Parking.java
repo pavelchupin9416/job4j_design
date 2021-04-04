@@ -10,8 +10,16 @@ import java.util.List;
  */
 public class Parking {
 
-   List<Transport> transports = new ArrayList<>();
-   List<Transport> transportsTruck = new ArrayList<>();
+  private List<Transport> transports = new ArrayList<>();
+  private List<Transport> transportsTruck = new ArrayList<>();
+
+    public List<Transport> getTransports() {
+        return transports;
+    }
+
+    public List<Transport> getTransportsTruck() {
+        return transportsTruck;
+    }
 
    int spotCar;
    int spotTruck;
@@ -26,8 +34,9 @@ public class Parking {
     * Парковка транспорта
     * @param transport - паркующийся транспорт
     */
-   public void park(Transport transport) throws Exception  {
-     if (transport.IsTruck()) {
+   public boolean park(Transport transport)  {
+      boolean result = true;
+     if (transport.getSize() > 1) {
         if ((spotTruck - 1) >= 0) {
          transportsTruck.add(transport);
          spotTruck = spotTruck - 1;
@@ -35,26 +44,31 @@ public class Parking {
           transports.add(transport);
           spotCar = spotCar - transport.getSize();
         } else {
-           throw new Exception("На парковке нет мест!");
+           result = false;
         }
      } else if ((spotCar - 1) >= 0) {
         transports.add(transport);
         spotCar = spotCar - 1;
      } else {
-        throw new Exception("На парковке нет мест!");
+        result = false;
      }
+     return result;
    }
 
    /**
     * Отъезд транспорта
     * @param transport - уезжающий транспорт
     */
-   public void leave(Transport transport) {
-      if (transport.IsTruck()) {
-          transportsTruck.remove(transport);
-          transports.remove(transport);
+   public boolean leave(Transport transport) {
+       boolean result = false;
+      if (transport.getSize() > 1) {
+          result = transportsTruck.remove(transport);
+          if (!result) {
+             result = transports.remove(transport);
+          }
       } else {
-          transports.remove(transport);
+         result = transports.remove(transport);
       }
+      return  result;
    }
 }

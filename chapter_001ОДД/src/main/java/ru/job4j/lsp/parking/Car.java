@@ -19,8 +19,4 @@ public class Car implements Transport {
         return 1;
     }
 
-    @Override
-    public boolean IsTruck() {
-        return false;
-    }
 }

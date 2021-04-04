@@ -4,5 +4,4 @@ public interface Transport {
 
     public int getSize();
 
-    boolean IsTruck();
 }

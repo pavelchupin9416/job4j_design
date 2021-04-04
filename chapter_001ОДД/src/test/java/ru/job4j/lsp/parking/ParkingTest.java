@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ParkingTest {
     @Test
-    public void park() throws Exception {
+    public void park() {
         Car car = new Car("фк345а");
         Truck truck = new Truck("ар435о", 2);
         Parking parking = new Parking(5, 1);
@@ -17,22 +17,23 @@ public class ParkingTest {
         parking.park(truck);
         List<Transport> vehicles = new ArrayList<>();
         vehicles.add(car);
-        assertThat(vehicles, is(parking.transports));
+        assertThat(vehicles, is(parking.getTransports()));
     }
 
-    @Test (expected = Exception.class)
-    public void park2() throws Exception {
+    @Test
+    public void park2() {
         Car car = new Car("фк345а");
         Truck truck = new Truck("ар455о", 20);
         Truck truck2 = new Truck("ар435о", 2);
         Parking parking = new Parking(5, 1);
         parking.park(car);
         parking.park(truck2);
-        parking.park(truck);
+        Boolean result = parking.park(truck);
+        assertThat(result, is(false));
     }
 
     @Test
-    public void leave() throws Exception {
+    public void leave() {
         Car car = new Car("фк345а");
         Car car2 = new Car("ар435о");
         Parking parking = new Parking(5, 1);
@@ -41,21 +42,21 @@ public class ParkingTest {
         parking.leave(car2);
         List<Transport> vehicles = new ArrayList<>();
         vehicles.add(car);
-        assertThat(vehicles, is(parking.transports));
+        assertThat(vehicles, is(parking.getTransports()));
     }
 
     @Test
-    public void leaveTruck() throws Exception {
+    public void leaveTruck() {
         Truck truck = new Truck("ар455о", 20);
         Truck truck2 = new Truck("ар435о", 2);
         Truck truck3 = new Truck("ар895о", 2);
         Parking parking = new Parking(5, 2);
-        parking.park(truck);
-        parking.park(truck2);
-        parking.park(truck3);
-        parking.leave(truck2);
+        boolean t1 = parking.park(truck);
+        boolean t2 =  parking.park(truck2);
+        boolean t3 = parking.park(truck3);
+        boolean t4 =  parking.leave(truck2);
         List<Transport> vehicles = new ArrayList<>();
         vehicles.add(truck);
-        assertThat(vehicles, is(parking.transportsTruck));
+        assertThat(vehicles, is(parking.getTransportsTruck()));
     }
 }
