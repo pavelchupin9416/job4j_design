@@ -26,4 +26,16 @@ public void inventory(Food food) {
    }
  }
 }
+
+public void resort() {
+    List<Food> temp = new ArrayList<>();
+      for (Storage stor : storages) {
+        temp.addAll(stor.getFoods());
+        stor.clear();
+      }
+      for (Food food : temp) {
+        inventory(food);
+      }
+
+}
 }

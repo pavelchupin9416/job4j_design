@@ -22,6 +22,16 @@ public class Shop implements Storage {
     }
 
     @Override
+    public List<Food> getFoods() {
+        return foods;
+    }
+
+    @Override
+    public void clear() {
+        foods.clear();
+    }
+
+    @Override
     public boolean accept(Food food) {
         boolean bool = false;
         double shelLife = food.shellLife();

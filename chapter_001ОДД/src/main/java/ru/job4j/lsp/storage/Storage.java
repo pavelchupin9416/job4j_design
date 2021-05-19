@@ -15,5 +15,9 @@ public interface Storage {
 
     public Food get(int index);
 
+    public List<Food> getFoods();
+
+    public void clear();
+
     boolean accept(Food food);
 }
