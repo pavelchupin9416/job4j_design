@@ -17,6 +17,7 @@
 
     <modules>
         <module>chapter_001ОДД</module>
+        <module>chapter_002Collections. Pro</module>
     </modules>
 
     <dependencies>
