@@ -71,7 +71,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
             @Override
             public boolean hasNext() {
-                return currentIndex < ind && array[currentIndex] != null;
+                return currentIndex < ind;
             }
 
             @Override
@@ -82,10 +82,6 @@ public class SimpleArray<T> implements Iterable<T> {
                 return (T) array[currentIndex++];
             }
 
-            @Override
-            public void remove() {
-                throw new UnsupportedOperationException();
-            }
         };
         return it;
     }
