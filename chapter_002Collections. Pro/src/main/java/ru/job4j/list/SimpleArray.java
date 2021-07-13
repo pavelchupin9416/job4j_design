@@ -1,9 +1,6 @@
 package ru.job4j.list;
 
-import java.util.ConcurrentModificationException;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Objects;
+import java.util.*;
 
 /**
  *Class SimpleArray динамический список на массиве.
@@ -50,9 +47,7 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     private Object[] grow() {
-        Object[] newArrays = new Object[this.arrays.length + 1];
-        System.arraycopy(arrays, 0, newArrays, 0, arrays.length);
-        return newArrays;
+        return Arrays.copyOf(arrays, arrays.length * 2);
     }
 
     public Object[] getArrays() {
