@@ -3,7 +3,11 @@ package ru.job4j.list.linked;
 import org.hamcrest.core.Is;
 import org.junit.Test;
 
+
+
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import static org.junit.Assert.*;
 
@@ -47,4 +51,24 @@ public class SimpleLinkedListTest {
         assertThat(second.hasNext(), Is.is(false));
     }
 
+    @Test(expected = NoSuchElementException.class)
+    public void whenGetEmptyFromIt() {
+        List<String> array = new SimpleLinkedList<>();
+        array.iterator().next();
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void whenGetEmpty() {
+        List<String> array = new SimpleLinkedList<>();
+        array.get(0);
+    }
+
+    @Test(expected = ConcurrentModificationException.class)
+    public void whenCorruptedIt() {
+        List<String> array = new SimpleLinkedList<>();
+        array.add("first");
+        Iterator<String> it = array.iterator();
+        array.add("second");
+        it.next();
+    }
 }
