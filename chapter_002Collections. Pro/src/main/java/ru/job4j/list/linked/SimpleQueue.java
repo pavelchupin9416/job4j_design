@@ -10,11 +10,11 @@ public class SimpleQueue<T> {
 
     public T poll() {
         T result = null;
-        if(outCount > 0) {
+        if (!out.empty()) {
             result = out.pop();
             outCount--;
-        } else if (inCount > 0) {
-            while (inCount > 0) {
+        } else if (!in.empty()) {
+            while (!in.empty()) {
                 T temp = in.pop();
                 out.push(temp);
                 inCount--;
