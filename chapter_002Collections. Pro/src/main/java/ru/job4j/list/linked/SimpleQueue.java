@@ -9,6 +9,9 @@ public class SimpleQueue<T> {
     int outCount = 0;
 
     public T poll() {
+        if (in.empty() & out.empty()) {
+            throw new NoSuchElementException();
+        }
         T result = null;
         if (!out.empty()) {
             result = out.pop();
@@ -22,9 +25,6 @@ public class SimpleQueue<T> {
             }
             result = out.pop();
             outCount--;
-        }
-        if (result == null) {
-            throw new NoSuchElementException();
         }
         return result;
     }
