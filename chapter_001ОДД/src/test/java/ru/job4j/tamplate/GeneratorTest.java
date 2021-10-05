@@ -2,7 +2,6 @@ package ru.job4j.tamplate;
 
 
 import static org.junit.Assert.assertThat;
-//import static org.junit.Assert;
 import java.io.IOException;
 import org.junit.Assert;
 import org.junit.Test;

@@ -87,7 +87,6 @@ public class StorageTest {
         Food food1 = new Food("Kefir", expaired1, created1, 56, 0);
         trash.add(food1);
         controllQuality.resort();
-        //controllQuality.inventory(food);
         assertThat(food, is(trash.get(0)));
     }
 }
