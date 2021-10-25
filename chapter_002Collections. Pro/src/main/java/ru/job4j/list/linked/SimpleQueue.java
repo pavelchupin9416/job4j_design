@@ -11,15 +11,12 @@ public class SimpleQueue<T> {
         if (in.empty() && out.empty()) {
             throw new NoSuchElementException();
         }
-        T result = null;
        if (out.empty()) {
            while (!in.empty()) {
-               T temp = in.pop();
-               out.push(temp);
+               out.push(in.pop());
            }
        }
-       result = out.pop();
-        return result;
+        return out.pop();
     }
 
     public void push(T value) {
