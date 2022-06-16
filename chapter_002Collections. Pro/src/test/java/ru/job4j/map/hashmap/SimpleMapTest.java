@@ -24,12 +24,20 @@ public class SimpleMapTest {
         SimpleMap<Integer, String> map = new SimpleMap<>();
         assertThat(map.put(0, "first"), is(true));
         assertThat(map.put(0, "two"), is(false));
+        assertThat(map.get(0), is("first"));
     }
 
     @Test
     public void whenGetMap() {
         SimpleMap<Integer, String> map = new SimpleMap<>();
         assertNull(map.get(0));
+    }
+
+    @Test
+    public void whenGetMapSameIndex() {
+        SimpleMap<Integer, String> map = new SimpleMap<>();
+        assertThat(map.put(0, "first"), is(true));
+        assertNull(map.get(56));
     }
 
     @Test()
@@ -61,6 +69,22 @@ public class SimpleMapTest {
         map.put(1,"second");
         assertThat(map.remove(0),is(true));
         assertNull(map.get(0));
+    }
+
+    @Test
+    public void whenExpend() {
+        SimpleMap<Integer, String> map = new SimpleMap<>();
+        map.put(0, "first");
+        map.put(1,"second");
+        map.put(2,"2");
+        map.put(3,"3");
+        map.put(4,"4");
+        map.put(5,"5");
+        map.put(6,"6");
+        map.put(7,"7");
+        map.put(8,"8");
+        map.put(9,"9");
+        assertThat(map.get(9), is("9"));
     }
 
     @Test

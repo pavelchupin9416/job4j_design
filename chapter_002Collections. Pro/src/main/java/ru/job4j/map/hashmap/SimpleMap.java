@@ -23,6 +23,8 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
     private MapEntry<K, V>[] table = new MapEntry[capacity];
 
+
+
     @Override
     public boolean put(K key, V value) {
         boolean result = true;
@@ -34,16 +36,17 @@ public class SimpleMap<K, V> implements Map<K, V> {
         MapEntry<K, V> map = new MapEntry<>(key, value);
         if (table[index] != null) {
             result = false;
-        }
+        } else {
         table[index] = map;
         count++;
         modCount++;
+        }
         return result;
     }
 
     private int hash(int hashCode) {
         int h = hashCode;
-        return (h)^(h>>16);
+        return (h)^(h>>>16);
     }
 
     private int indexFor(int hash) {
@@ -51,32 +54,48 @@ public class SimpleMap<K, V> implements Map<K, V> {
     }
 
     private void expand() {
-
+        SimpleMap<K, V> mapNew = new SimpleMap<>();
+        mapNew.capacity=capacity * 2;
+        mapNew.table = new MapEntry[mapNew.capacity];
+        Iterator<K> it = iterator();
+        while (it.hasNext()) {
+            K key = it.next();
+            mapNew.put(key, get(key));
+        }
+        table = mapNew.table;
+        capacity = capacity * 2;
     }
+
+
 
     @Override
     public V get(K key) {
+        V result = null;
         if (count != 0) {
             int h = hash(key.hashCode());
             int index = indexFor(h);
             if(table[index] != null){
-            return table[index].value;}
+                if (table[index].key.equals(key)) {
+                result = table[index].value;
+                }
+            }
         }
-        return null;
+        return result;
     }
 
     @Override
     public boolean remove(K key) {
+        boolean result = false;
         if (count != 0) {
             int hash = hash(key.hashCode());
             int index = indexFor(hash);
             if (table[index] != null) {
             table[index] = null;
             modCount++;
-            return true;
+            result = true;
             }
         }
-        return false;
+        return result;
     }
 
     @Override
@@ -84,20 +103,20 @@ public class SimpleMap<K, V> implements Map<K, V> {
         return new Iterator<K>() {
             final int expectedModCount = modCount;
             private int point = 0;
-            private final MapEntry<K, V>[] data = table;
 
             @Override
             public boolean hasNext() {
+                boolean result = false;
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                for (int i = point; i < data.length; i++) {
-                    if (data[i] != null) {
+                for (int i = point; i < table.length; i++) {
+                    if (table[i] != null) {
                         point = i;
-                        return true;
+                        result = true;
                     }
                 }
-                return false;
+                return result;
             }
 
             @Override
@@ -105,7 +124,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                return data[point++].key;
+                return table[point++].key;
             }
         };
     }
