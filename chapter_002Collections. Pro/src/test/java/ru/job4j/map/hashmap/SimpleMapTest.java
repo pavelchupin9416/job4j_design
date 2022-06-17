@@ -95,4 +95,12 @@ public class SimpleMapTest {
         map.put(1,"second");
         assertThat(map.remove(3),is(false));
     }
+
+    @Test
+    public void whenRemoveMapFalse2() {
+        SimpleMap<Integer, String> map = new SimpleMap<>();
+        map.put(0, "first");
+        map.put(1,"second");
+        assertThat(map.remove(56),is(false));
+    }
 }
