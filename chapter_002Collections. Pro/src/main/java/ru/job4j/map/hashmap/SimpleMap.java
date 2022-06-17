@@ -54,16 +54,10 @@ public class SimpleMap<K, V> implements Map<K, V> {
     }
 
     private void expand() {
-        SimpleMap<K, V> mapNew = new SimpleMap<>();
-        mapNew.capacity=capacity * 2;
-        mapNew.table = new MapEntry[mapNew.capacity];
-        Iterator<K> it = iterator();
-        while (it.hasNext()) {
-            K key = it.next();
-            mapNew.put(key, get(key));
-        }
-        table = mapNew.table;
         capacity = capacity * 2;
+        MapEntry<K, V>[] newTable = new MapEntry[capacity];
+        System.arraycopy(table,0,newTable,0,count);
+        table = newTable;
     }
 
 
@@ -71,30 +65,26 @@ public class SimpleMap<K, V> implements Map<K, V> {
     @Override
     public V get(K key) {
         V result = null;
-        if (count != 0) {
-            int h = hash(key.hashCode());
-            int index = indexFor(h);
-            if(table[index] != null){
-                if (table[index].key.equals(key)) {
+        int h = hash(key.hashCode());
+        int index = indexFor(h);
+        if(table[index] != null){
+            if (table[index].key.hashCode() == key.hashCode() && table[index].key.equals(key)) {
                 result = table[index].value;
                 }
             }
-        }
         return result;
     }
 
     @Override
     public boolean remove(K key) {
         boolean result = false;
-        if (count != 0) {
-            int hash = hash(key.hashCode());
-            int index = indexFor(hash);
-            if (table[index] != null) {
+        int hash = hash(key.hashCode());
+        int index = indexFor(hash);
+        if (table[index] != null) {
             table[index] = null;
             modCount++;
             result = true;
             }
-        }
         return result;
     }
 

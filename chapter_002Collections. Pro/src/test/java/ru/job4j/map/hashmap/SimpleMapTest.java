@@ -84,6 +84,7 @@ public class SimpleMapTest {
         map.put(7,"7");
         map.put(8,"8");
         map.put(9,"9");
+        assertThat(map.get(0), is("first"));
         assertThat(map.get(9), is("9"));
     }
 
