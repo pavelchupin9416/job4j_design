@@ -23,10 +23,10 @@ public class Analize {
         for (User pre : previous) {
             if (keys.contains(pre.getId())) {
                 if(!pre.getName().equals(map.get(pre.getId()))){
-                    changed=changed+1;
+                    changed++;
                 }
             } else {
-             deleted=deleted+1;
+             deleted++;
             }
         }
         added = current.size() - (previous.size()-deleted);
