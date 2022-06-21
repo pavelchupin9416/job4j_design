@@ -74,18 +74,18 @@ public class SimpleMapTest {
     @Test
     public void whenExpend() {
         SimpleMap<Integer, String> map = new SimpleMap<>();
-        map.put(0, "first");
-        map.put(1,"second");
-        map.put(2,"2");
-        map.put(3,"3");
-        map.put(4,"4");
-        map.put(5,"5");
-        map.put(6,"6");
-        map.put(7,"7");
-        map.put(8,"8");
-        map.put(9,"9");
-        assertThat(map.get(0), is("first"));
-        assertThat(map.get(9), is("9"));
+        map.put(70, "first");
+        map.put(71,"second");
+        map.put(72,"2");
+        map.put(73,"3");
+        map.put(74,"4");
+        map.put(75,"5");
+        map.put(76,"6");
+        map.put(77,"7");
+        map.put(78,"8");
+        map.put(79,"9");
+        assertThat(map.get(70), is("first"));
+        assertThat(map.get(79), is("9"));
     }
 
     @Test

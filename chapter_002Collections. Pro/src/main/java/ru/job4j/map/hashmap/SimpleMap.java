@@ -58,10 +58,9 @@ public class SimpleMap<K, V> implements Map<K, V> {
         MapEntry<K, V>[] newTable = new MapEntry[capacity];
         for (MapEntry<K, V> mapEntry : table) {
             if (mapEntry != null) {
-                newTable[hash(mapEntry.key.hashCode()) & (newTable.length - 1)] = mapEntry;
+                newTable[indexFor(hash(mapEntry.key.hashCode()))] = mapEntry;
             }
         }
-        System.arraycopy(table,0,newTable,0,count);
         table = newTable;
     }
 
