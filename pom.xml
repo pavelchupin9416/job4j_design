@@ -30,6 +30,7 @@
     <modules>
         <module>chapter_001ОДД</module>
         <module>chapter_002Collections. Pro</module>
+        <module>chapter_003Input_Output</module>
     </modules>
 
     <dependencies>
