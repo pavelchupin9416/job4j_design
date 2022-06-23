@@ -1,6 +1,7 @@
 package outputStream;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class ResultFile {
@@ -18,7 +19,7 @@ public class ResultFile {
                 out.write(Arrays.deepToString(number).getBytes());
                 out.write(System.lineSeparator().getBytes());
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
