@@ -6,10 +6,12 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class ConfigTest {
+    private static final String filestest =System.getProperty("user.dir") + "\\data\\";
+
 
     @Test
     public void whenPairWithoutComment() {
-        String path = "./data/pair_without_comment.properties";
+        String path =filestest + "pair_without_comment.properties";
         Config config = new Config(path);
         config.load();
         assertThat(config.value("hibernate.connection.username"),is("postgres"));
@@ -18,7 +20,7 @@ public class ConfigTest {
     }
     @Test
     public void whenPairWithComment() {
-        String path = "./data/pair_with_comment.properties";
+        String path =filestest + "pair_with_comment.properties";
         Config config = new Config(path);
         config.load();
         assertThat(config.value("hibernate.connection.username"),is("postgres"));
@@ -27,28 +29,28 @@ public class ConfigTest {
     }
     @Test (expected = IllegalArgumentException.class)
     public void whenPairWithIllegalArgumentKey() {
-        String path = "./data/pair_with_illegal_argument_key.properties";
+        String path =filestest + "pair_with_illegal_argument_key.properties";
         Config config = new Config(path);
         config.load();
 
     }
     @Test (expected = IllegalArgumentException.class)
     public void whenPairWithIllegalArgumentValue()  {
-        String path = "./data/pair_with_illegal_argument_value.properties";
+        String path =filestest + "pair_with_illegal_argument_value.properties";
         Config config = new Config(path);
         config.load();
 
     }
     @Test (expected = IllegalArgumentException.class)
     public void whenPairWithIllegalArgumentNotEquals() {
-        String path = "./data/pair_with_illegal_argument_not_equals.properties";
+        String path =filestest + "pair_with_illegal_argument_not_equals.properties";
         Config config = new Config(path);
         config.load();
 
     }
     @Test (expected = IllegalArgumentException.class)
     public void whenPairWithIllegalArgument() {
-        String path = "./data/pair_with_illegal_argument.properties";
+        String path =filestest + "pair_with_illegal_argument.properties";
         Config config = new Config(path);
         config.load();
 
