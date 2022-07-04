@@ -11,8 +11,10 @@ import java.util.function.Predicate;
 
 public class Search {
     public static void main(String[] args) throws IOException {
-
-        if (args[0] == null || args.length != 2) {
+        if (args.length < 2) {
+            throw new IllegalArgumentException("Not enough input parameters");
+        }
+        if (args[0] == null) {
             throw new IllegalArgumentException("Root folder is null. Usage java -jar search-1.jar ROOT_FOLDER File_Type.");
         }
         if (filePath(args[0])) {
