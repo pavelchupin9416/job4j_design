@@ -11,9 +11,38 @@ import java.util.function.Predicate;
 
 public class Search {
     public static void main(String[] args) throws IOException {
-        Path start = Paths.get(".");
-        search(start, p -> p.toFile().getName().endsWith(".java")).forEach(System.out::println);
+        if (args[0] == null) {
+            throw new IllegalArgumentException("Root folder is null. Usage java -jar search-1.jar ROOT_FOLDER File_Type.");
+        }
+        else if (filePath(args[0])) {
+            throw new IllegalArgumentException("Path incorrect. Usage java -jar search-1.jar ROOT_FOLDER File_Type.");
+        }
+        if (args[1] == null) {
+            throw new IllegalArgumentException("File type is null. Usage java -jar search-1.jar ROOT_FOLDER File_Type.");
+        }
+        else if(typeFile(args[1])) {
+            throw new IllegalArgumentException("File type incorrect. Usage java -jar search-1.jar ROOT_FOLDER File_Type.");
+        }
+        String path = args[0];
+        String fileTipe = args[1];
+
+        Path start = Paths.get(path);
+        search(start, p -> p.toFile().getName().endsWith(fileTipe)).forEach(System.out::println);
     }
+
+    private static boolean filePath(String path) {
+        boolean resualt = true;
+        if (path.matches("^[A-Z]{1}:[\\a-zA-Za-яА-Я0-9]*$")) {
+        Path file = Paths.get(path);
+        resualt=!Files.exists(file);
+        }
+        return resualt;
+    }
+
+    private static boolean typeFile(String type) {
+        return !(type.charAt(0) == '.' && type.substring(1).matches("^[a-z0-9]+$"));
+    }
+
 
     public static List<Path> search(Path root, Predicate<Path> condition) {
         SearchFiles searcher = new SearchFiles(condition);
