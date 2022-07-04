@@ -11,16 +11,17 @@ import java.util.function.Predicate;
 
 public class Search {
     public static void main(String[] args) throws IOException {
-        if (args[0] == null) {
+
+        if (args[0] == null || args.length != 2) {
             throw new IllegalArgumentException("Root folder is null. Usage java -jar search-1.jar ROOT_FOLDER File_Type.");
         }
-        else if (filePath(args[0])) {
+        if (filePath(args[0])) {
             throw new IllegalArgumentException("Path incorrect. Usage java -jar search-1.jar ROOT_FOLDER File_Type.");
         }
         if (args[1] == null) {
             throw new IllegalArgumentException("File type is null. Usage java -jar search-1.jar ROOT_FOLDER File_Type.");
         }
-        else if(typeFile(args[1])) {
+        if(typeFile(args[1])) {
             throw new IllegalArgumentException("File type incorrect. Usage java -jar search-1.jar ROOT_FOLDER File_Type.");
         }
         String path = args[0];
