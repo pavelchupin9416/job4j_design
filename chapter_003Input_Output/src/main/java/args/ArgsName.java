@@ -30,7 +30,7 @@ public class ArgsName {
                 throw new IllegalArgumentException("Ключ должен начинаться с символа -");
             }
             String value = arg.substring(index + 1);
-            if (value.equals("") || key.equals("")) {
+            if (value.isBlank() || key.isBlank()) {
                 throw new IllegalArgumentException("Ключ/значение не заполнены");
             }
             values.put(key,value);
