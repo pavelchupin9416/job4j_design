@@ -27,7 +27,7 @@ public class Search {
         search(start, p -> p.toFile().getName().endsWith(fileTipe)).forEach(System.out::println);
     }
 
-    private static boolean filePath(String path) {
+    public static boolean filePath(String path) {
         boolean resualt = true;
         if (path.matches("^[A-Z]{1}:[\\a-zA-Za-яА-Я0-9]*$")) {
         Path file = Paths.get(path);
@@ -36,7 +36,7 @@ public class Search {
         return resualt;
     }
 
-    private static boolean typeFile(String type) {
+   public static boolean typeFile(String type) {
         return !(type.charAt(0) == '.' && type.substring(1).matches("^[a-z0-9]+$"));
     }
 
