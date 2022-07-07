@@ -28,13 +28,13 @@ public class ConsoleChat {
         List<String> answers = readPhrases();
         int max = answers.size() - 1;
         while (run) {
-            if (message.equals(STOP)) {
+            if (STOP.equals(message)) {
                 System.out.println("Чат остановлен, если хотите продолжить напишите : "+ CONTINUE);
-                while (!message.equals(CONTINUE) && !message.equals(OUT)) {
+                while (!CONTINUE.equals(message) && !OUT.equals(message)) {
                     log.add(message);
                     message = scanner.nextLine();
                 }
-                if (message.equals(OUT)){
+                if (OUT.equals(message)){
                     System.out.println("Чат закончил работу");
                     log.add(message);
                     break;
