@@ -18,7 +18,7 @@ public class CSVReader {
         Scanner scanner = new Scanner((new File (argsName.get("path"))));
         String[] line = scanner.nextLine().split(delimiter);
         columns = columnsFinder(line,filter);
-        if (argsName.get("out").equals("stdout")) {
+        if ("stdout".equals(argsName.get("out"))) {
             System.out.println(joiner(line));
             while (scanner.hasNext()) {
                 String out = joiner(scanner.nextLine().split(delimiter)).toString();
@@ -45,7 +45,7 @@ public class CSVReader {
     public static List<Integer> columnsFinder(String[] line , String[] filter) {
         for (int index = 0; index < line.length; index++) {
             for (int i = 0; i < filter.length; i ++) {
-                if (line[index].equals(filter[i])) {
+                if (filter[i].equals(line[index])) {
                     columns.add(index);
                 }
             }
@@ -68,7 +68,7 @@ public class CSVReader {
         if (!Files.exists(Paths.get(argsName.get("path")))){
             throw new IllegalArgumentException("Файла не существует или указан не корректный путь");
         }
-        if (!argsName.get("out").equals("stdout")) {
+        if (!"stdout".equals(argsName.get("out"))) {
             if (!Files.exists(Paths.get(argsName.get("out"))) || !argsName.get("out").endsWith(".csv"))  {
             throw new IllegalArgumentException("Путь к файлу файлу вывода некорректен");
             }
