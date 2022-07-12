@@ -12,6 +12,12 @@ public class UsageLog4j {
     private static final Logger LOG = LoggerFactory.getLogger(UsageLog4j.class.getName());
 
     public static void main(String[] args) throws ParseException {
+        LOG.trace("trace message");
+        LOG.debug("debug message");
+        LOG.info("info message");
+        LOG.warn("warn message");
+        LOG.error("error message");
+
         String name = "Pavel Chupin";
         char gender = 'М';
         boolean human = true;
