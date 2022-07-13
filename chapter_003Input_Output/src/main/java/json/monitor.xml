@@ -2,8 +2,8 @@
 <monitor curved_screen="false" diagonal="27" name_model="27GN600">
     <producer name="LG"/>
     <characteristicses>
-        <status>1920x1080</status>
-        <status>60Гц</status>
-        <status>HDMI</status>
+        <characteristics>1920x1080</characteristics>
+        <characteristics>60Гц</characteristics>
+        <characteristics>HDMI</characteristics>
     </characteristicses>
 </monitor>
