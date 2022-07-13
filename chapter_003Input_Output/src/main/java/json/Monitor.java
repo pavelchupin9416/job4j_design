@@ -1,15 +1,27 @@
 package json;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.annotation.*;
+import java.io.StringWriter;
 import java.util.Arrays;
-
+@XmlRootElement(name = "monitor")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Monitor
 {
-    private final boolean curved_screen;
-    private final int diagonal;
-    private final String name_model;
-    private final Producer producer;
-    private final String[] characteristics;
+    @XmlAttribute
+    private boolean curved_screen;
+    @XmlAttribute
+    private int diagonal;
+    @XmlAttribute
+    private String name_model;
+    private Producer producer;
+    @XmlElementWrapper(name = "characteristicses")
+    @XmlElement(name = "characteristics")
+    private String[] characteristics;
 
+    public Monitor() { }
 
     public Monitor(boolean curved_screen, int diagonal, String name_model,Producer producer, String[] characteristics) {
         this.curved_screen = curved_screen;
@@ -29,5 +41,24 @@ public class Monitor
                 + ", producer=" + producer
                 + ", characteristics=" + Arrays.toString(characteristics)
                 + '}';
+    }
+
+    public static void main(String[] args) throws JAXBException {
+
+        final  Monitor monitor = new Monitor(false,27, "VG279Q", new Producer("ASUS"),
+                new String[]{"1920x1080","144Гц"});
+
+
+        JAXBContext context = JAXBContext.newInstance(Monitor.class);
+        Marshaller marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+        try (StringWriter writer = new StringWriter()) {
+            marshaller.marshal(monitor, writer);
+            String result = writer.getBuffer().toString();
+            System.out.println(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
