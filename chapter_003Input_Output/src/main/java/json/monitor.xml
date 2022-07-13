@@ -1,0 +1,9 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<monitor curved_screen="false" diagonal="27" name_model="27GN600">
+    <producer name="LG"/>
+    <characteristicses>
+        <status>1920x1080</status>
+        <status>60Гц</status>
+        <status>HDMI</status>
+    </characteristicses>
+</monitor>
