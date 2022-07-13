@@ -31,6 +31,25 @@ public class Monitor
         this.characteristics = characteristics;
     }
 
+    public boolean isCurved_screen() {
+        return curved_screen;
+    }
+
+    public int getDiagonal() {
+        return diagonal;
+    }
+
+    public String getName_model() {
+        return name_model;
+    }
+
+    public Producer getProducer() {
+        return producer;
+    }
+
+    public String[] getCharacteristics() {
+        return characteristics;
+    }
 
     @Override
     public String toString() {
