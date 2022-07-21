@@ -8,7 +8,7 @@ CREATE table lessons (
     id serial primary key,
     name varchar(255),
     academic_hours int NULL,
-    teacher_id references teachers(id) NULL
+    teacher_id int references teachers(id) NULL
 );
 
 
