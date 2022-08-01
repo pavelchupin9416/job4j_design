@@ -6,10 +6,11 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class ConnectionDemo {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-       Config config = new Config("chapter_004_SQL_JDBC\\src\\main\\resources\\app.properties");
+        Config config = new Config(Objects.requireNonNull(ConnectionDemo.class.getClassLoader().getResource("app.properties")).getPath());
         config.load();
         Class.forName(config.value("connection.driver_class"));
         String url = config.value("connection.url");;
