@@ -24,7 +24,11 @@ public class ImportDB {
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
             rd.lines().forEach(s -> {
                 String[] line = s.split(";");
-                users.add(new User(line[0], line[1]));
+                if (line.length == 2 && !line[0].isBlank() && !line[1].isBlank()) {
+                    users.add(new User(line[0], line[1]));
+                } else {
+                    throw new IllegalArgumentException("Некорректно заполнен файл");
+                }
             });
         }
         return users;
