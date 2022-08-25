@@ -13,27 +13,27 @@ CREATE TABLE person
     CONSTRAINT person_pkey PRIMARY KEY (id)
 );
 
-insert into company(id, name) values (1, 'Газпром'),
-(2, 'Сбербанк'),
-(3, 'ВТБ'),
-(4, 'Алроса'),
+insert into company(id, name) values (1, 'Р“Р°Р·РїСЂРѕРј'),
+(2, 'РЎР±РµСЂР±Р°РЅРє'),
+(3, 'Р’РўР‘'),
+(4, 'РђР»СЂРѕСЃР°'),
 (5, 'microsoft');
 
-insert into person(id, name, company_id) VALUES (1, 'Виктор', 1),
-(2, 'Семен', 1),
-(3, 'Татьяна', 2),
-(4, 'Мария', 2),
-(5, 'Николай', 3),
-(6, 'Владимир', 3),
-(7, 'Никита', 4),
-(8, 'Алина', 4),
-(9, 'Павел', 5),
-(10, 'Иван',5),
-(11, 'Андрей', 5)
-(12, 'Дмитрий',3);
+insert into person(id, name, company_id) VALUES (1, 'Р’РёРєС‚РѕСЂ', 1),
+(2, 'РЎРµРјРµРЅ', 1),
+(3, 'РўР°С‚СЊСЏРЅР°', 2),
+(4, 'РњР°СЂРёСЏ', 2),
+(5, 'РќРёРєРѕР»Р°Р№', 3),
+(6, 'Р’Р»Р°РґРёРјРёСЂ', 3),
+(7, 'РќРёРєРёС‚Р°', 4),
+(8, 'РђР»РёРЅР°', 4),
+(9, 'РџР°РІРµР»', 5),
+(10, 'РРІР°РЅ',5),
+(11, 'РђРЅРґСЂРµР№', 5)
+(12, 'Р”РјРёС‚СЂРёР№',3);
 
 
-select p.name as "Сотрудник", c.name as "Компания" from company as c
+select p.name as "РЎРѕС‚СЂСѓРґРЅРёРє", c.name as "РљРѕРјРїР°РЅРёСЏ" from company as c
   join person as p on p.company_id=c.id WHERE c.id != 5
 
 select c.name, count(*)  from company c
