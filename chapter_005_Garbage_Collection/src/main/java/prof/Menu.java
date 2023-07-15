@@ -28,6 +28,7 @@ public class Menu {
             """;
 
     public static void main(String[] args) {
+        long start = System.currentTimeMillis();
         Data store = new RandomArray(new Random());
         Sort merge = new MergeSort();
         Sort bubble = new BubbleSort();
@@ -44,17 +45,17 @@ public class Menu {
                 store.insert(size);
                 System.out.println(ARRAY_INFO + size);
             } else if (MERGE_SORT == userChoice) {
-                System.out.printf("%s%s%s%n", merge.getClass().getSimpleName(), BEGIN, LocalTime.now());
+                System.out.printf("%s%s%s%s%n", merge.getClass().getSimpleName(), BEGIN, LocalTime.now(), " MS " + Long.toString( System.currentTimeMillis()-start));
                 merge.sort(store);
-                System.out.printf("%s%s%s%n", merge.getClass().getSimpleName(), END, LocalTime.now());
+                System.out.printf("%s%s%s%s%n", merge.getClass().getSimpleName(), END, LocalTime.now(), " MS " + Long.toString( System.currentTimeMillis()-start));
             } else if (BUBBLE_SORT == userChoice) {
-                System.out.printf("%s%s%s%n", bubble.getClass().getSimpleName(), BEGIN, LocalTime.now());
+                System.out.printf("%s%s%s%s%n", bubble.getClass().getSimpleName(), BEGIN, LocalTime.now(), " MS " + Long.toString( System.currentTimeMillis()-start));
                 bubble.sort(store);
-                System.out.printf("%s%s%s%n", bubble.getClass().getSimpleName(), END, LocalTime.now());
+                System.out.printf("%s%s%s%s%n", bubble.getClass().getSimpleName(), END, LocalTime.now()," MS " + Long.toString( System.currentTimeMillis()-start));
             } else if (INSERT_SORT == userChoice) {
-                System.out.printf("%s%s%s%n", insert.getClass().getSimpleName(), BEGIN, LocalTime.now());
+                System.out.printf("%s%s%s%s%n", insert.getClass().getSimpleName(), BEGIN, LocalTime.now(), " MS " + Long.toString( System.currentTimeMillis()-start));
                 insert.sort(store);
-                System.out.printf("%s%s%s%n", insert.getClass().getSimpleName(), END, LocalTime.now());
+                System.out.printf("%s%s%s%s%n", insert.getClass().getSimpleName(), END, LocalTime.now()," MS " + Long.toString( System.currentTimeMillis()-start));
             } else {
                 run = false;
                 System.out.println("Конец работы");
