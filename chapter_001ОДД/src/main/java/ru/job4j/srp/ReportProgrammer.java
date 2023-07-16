@@ -6,7 +6,7 @@ import java.util.function.Predicate;
  *@author chupin
  *@since 05.08.2020
  */
-public class ReportProgrammer implements Report{
+public class ReportProgrammer implements Report {
     private Store store;
 
     public ReportProgrammer(Store store) {
