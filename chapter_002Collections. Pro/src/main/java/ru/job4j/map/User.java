@@ -35,7 +35,7 @@ public class User {
         Calendar calendar = new GregorianCalendar(2022, 2, 25);
         User user = new User("Pavel", 2, calendar);
         User user2 = new User("Pavel", 2, calendar);
-        Map<User,Object> map = new HashMap<>();
+        Map<User, Object> map = new HashMap<>();
         map.put(user, new Object());
         map.put(user2, new Object());
         System.out.println(map);
