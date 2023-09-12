@@ -17,7 +17,7 @@ public class SimpleStack<T> {
     }
 
     public boolean empty() {
-        return count == 0 ? true : false;
+        return count == 0;
     }
 
     public void push(T value) {

@@ -16,8 +16,12 @@ public class User {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         User user = (User) o;
         return children == user.children && Objects.equals(name, user.name) && Objects.equals(birthday, user.birthday);
     }
@@ -28,12 +32,12 @@ public class User {
     }
 
     public static void main(String[] args) {
-        Calendar calendar = new GregorianCalendar(2022,2,25);
-        User user = new User("Pavel",2,calendar);
-        User user2 = new User("Pavel",2,calendar);
-        Map<User,Object> map= new HashMap<>();
+        Calendar calendar = new GregorianCalendar(2022, 2, 25);
+        User user = new User("Pavel", 2, calendar);
+        User user2 = new User("Pavel", 2, calendar);
+        Map<User,Object> map = new HashMap<>();
         map.put(user, new Object());
-        map.put(user2,new Object());
+        map.put(user2, new Object());
         System.out.println(map);
     }
 }

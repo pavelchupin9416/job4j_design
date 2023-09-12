@@ -15,21 +15,21 @@ public class Analize {
         int added;
         int changed = 0;
         int deleted = 0;
-        Map <Integer,String> map = new HashMap<>();
+        Map<Integer, String> map = new HashMap<>();
         for (User cur : current) {
             map.put(cur.getId(), cur.getName());
         }
-        Set<Integer> keys= map.keySet();
+        Set<Integer> keys = map.keySet();
         for (User pre : previous) {
             if (keys.contains(pre.getId())) {
-                if(!pre.getName().equals(map.get(pre.getId()))){
+                if (!pre.getName().equals(map.get(pre.getId()))) {
                     changed++;
                 }
             } else {
              deleted++;
             }
         }
-        added = current.size() - (previous.size()-deleted);
-        return new Info(added,changed,deleted);
+        added = current.size() - (previous.size() - deleted);
+        return new Info(added, changed, deleted);
     }
 }

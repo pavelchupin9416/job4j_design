@@ -31,7 +31,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
         if (count > capacity * LOAD_FACTOR) {
             expand();
         }
-        int h=hash(key.hashCode());
+        int h = hash(key.hashCode());
         int index = indexFor(h);
         MapEntry<K, V> map = new MapEntry<>(key, value);
         if (table[index] != null) {
@@ -46,7 +46,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
     private int hash(int hashCode) {
         int h = hashCode;
-        return (h)^(h>>>16);
+        return (h) ^ (h >>> 16);
     }
 
     private int indexFor(int hash) {
@@ -71,7 +71,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
         V result = null;
         int h = hash(key.hashCode());
         int index = indexFor(h);
-        if(table[index] != null){
+        if (table[index] != null) {
             if (table[index].key.hashCode() == key.hashCode() && table[index].key.equals(key)) {
                 result = table[index].value;
                 }
