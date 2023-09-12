@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.is;
 import org.junit.Test;
 
 
-public class ArgsNameTest {
+public class ArgsTest {
 
     @Test
     public void whenGetFirst() {

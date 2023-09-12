@@ -1,6 +1,7 @@
 package leak;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Post {
     private Integer id;
@@ -44,9 +45,16 @@ public class Post {
         this.comments = comments;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Post post = (Post) o;
+        return Objects.equals(text, post.text) && Objects.equals(comments, post.comments);
+    }
 
     @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
+    public int hashCode() {
+        return Objects.hash(text, comments);
     }
 }
