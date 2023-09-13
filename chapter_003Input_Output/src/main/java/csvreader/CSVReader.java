@@ -70,7 +70,7 @@ public class CSVReader {
         }
         if (!"stdout".equals(argsName.get("out"))) {
             if (!Files.exists(Paths.get(argsName.get("out"))) || !argsName.get("out").endsWith(".csv"))  {
-            throw new IllegalArgumentException("Путь к файлу файлу вывода некорректен");
+                throw new IllegalArgumentException("Путь к файлу файлу вывода некорректен");
             }
         }
     }

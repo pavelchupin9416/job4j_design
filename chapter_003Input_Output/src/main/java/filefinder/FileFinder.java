@@ -64,7 +64,7 @@ public class FileFinder {
                 throw new IllegalArgumentException("The file name is specified incorrectly");
             }
         } else if (!"regex".equals(arguments.get("t"))) {
-                throw new IllegalArgumentException("Type search incorrectly");
+            throw new IllegalArgumentException("Type search incorrectly");
         }
 
         if (!arguments.get("o").endsWith(".txt")) {

@@ -1,4 +1,4 @@
-package csvReader;
+package csvreader;
 
 import args.ArgsName;
 import org.junit.Assert;
