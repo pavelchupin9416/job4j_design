@@ -14,7 +14,7 @@ public class DuplicatesFinder {
         if (!map.isEmpty()) {
             map.entrySet().stream().filter(m -> m.getValue().size() > 1)
                     .forEach(listFileProperty -> {
-                        System.out.println(listFileProperty.getKey().getName() +" Size:"+ listFileProperty.getKey().getSize());
+                        System.out.println(listFileProperty.getKey().getName() + " Size:" + listFileProperty.getKey().getSize());
                         listFileProperty.getValue().forEach(System.out::println);
                     });
         }

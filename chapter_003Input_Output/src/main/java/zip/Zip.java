@@ -1,7 +1,7 @@
 package zip;
 
 import args.ArgsName;
-import search.Search;
+import logj.search.Search;
 
 import java.io.*;
 import java.nio.file.Path;
@@ -28,7 +28,7 @@ public class Zip {
         if (Search.filePath(arguments.get("d"))) {
             throw new IllegalArgumentException("Path incorrect");
         }
-        if ( Search.typeFile(arguments.get("e"))) {
+        if (Search.typeFile(arguments.get("e"))) {
             throw new IllegalArgumentException("File type incorrectly");
         }
         if (!arguments.get("o").endsWith(".zip")) {
@@ -55,6 +55,6 @@ public class Zip {
         Path directory = Path.of(arguments.get("d"));
         String type = arguments.get("e");
         List<Path>  paths =  Search.search(directory, p -> !p.toFile().getName().endsWith(type));
-        zip.packFiles(paths,target);
+        zip.packFiles(paths, target);
     }
 }

@@ -1,4 +1,4 @@
-package bufferedReader;
+package bufferedreader;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class LogFilter {
                 new BufferedOutputStream(
                         new FileOutputStream(file)
                 ))) {
-            for(String element : log) {
+            for (String element : log) {
                 out.println(element);
             }
 
@@ -35,6 +35,6 @@ public class LogFilter {
         LogFilter logFilter = new LogFilter();
         List<String> log = logFilter.filter("log.txt");
         log.forEach(System.out :: println);
-        save(log,"log404.txt");
+        save(log, "log404.txt");
     }
 }

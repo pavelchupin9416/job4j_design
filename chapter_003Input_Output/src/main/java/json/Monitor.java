@@ -8,14 +8,13 @@ import java.io.StringWriter;
 import java.util.Arrays;
 @XmlRootElement(name = "monitor")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Monitor
-{
+public class Monitor {
     @XmlAttribute
-    private boolean curved_screen;
+    private boolean curvedScreen;
     @XmlAttribute
     private int diagonal;
     @XmlAttribute
-    private String name_model;
+    private String nameModel;
     private Producer producer;
     @XmlElementWrapper(name = "characteristicses")
     @XmlElement(name = "characteristics")
@@ -23,24 +22,24 @@ public class Monitor
 
     public Monitor() { }
 
-    public Monitor(boolean curved_screen, int diagonal, String name_model,Producer producer, String[] characteristics) {
-        this.curved_screen = curved_screen;
+    public Monitor(boolean curvedScreen, int diagonal, String nameModel, Producer producer, String[] characteristics) {
+        this.curvedScreen = curvedScreen;
         this.diagonal = diagonal;
-        this.name_model = name_model;
+        this.nameModel = nameModel;
         this.producer = producer;
         this.characteristics = characteristics;
     }
 
-    public boolean isCurved_screen() {
-        return curved_screen;
+    public boolean isCurvedScreen() {
+        return curvedScreen;
     }
 
     public int getDiagonal() {
         return diagonal;
     }
 
-    public String getName_model() {
-        return name_model;
+    public String getNameModel() {
+        return nameModel;
     }
 
     public Producer getProducer() {
@@ -54,8 +53,8 @@ public class Monitor
     @Override
     public String toString() {
         return "Monitor{"
-                + "name_model=" + name_model
-                + ", curved_screen=" + curved_screen
+                + "name_model=" + nameModel
+                + ", curved_screen=" + curvedScreen
                 + ", diagonal=" + diagonal
                 + ", producer=" + producer
                 + ", characteristics=" + Arrays.toString(characteristics)
@@ -64,8 +63,8 @@ public class Monitor
 
     public static void main(String[] args) throws JAXBException {
 
-        final  Monitor monitor = new Monitor(false,27, "VG279Q", new Producer("ASUS"),
-                new String[]{"1920x1080","144Гц"});
+        final  Monitor monitor = new Monitor(false, 27, "VG279Q", new Producer("ASUS"),
+                new String[]{"1920x1080", "144Гц"});
 
 
         JAXBContext context = JAXBContext.newInstance(Monitor.class);

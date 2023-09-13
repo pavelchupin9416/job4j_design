@@ -1,4 +1,4 @@
-package inputStream;
+package inputstream;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -14,9 +14,9 @@ public class EvenNumberFile {
             String[] lines = text.toString().split(System.lineSeparator());
             for (String line : lines) {
                 if (Integer.parseInt(line) % 2 == 0) {
-                    System.out.println(line+" четное");
+                    System.out.println(line + " четное");
                 } else {
-                    System.out.println(line+" нечетное");
+                    System.out.println(line + " нечетное");
                 }
             }
         } catch (IOException e) {

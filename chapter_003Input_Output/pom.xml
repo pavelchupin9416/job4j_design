@@ -20,7 +20,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>search.Search</mainClass>
+                            <mainClass>logj.search.Search</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

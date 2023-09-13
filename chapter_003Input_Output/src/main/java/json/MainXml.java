@@ -9,8 +9,8 @@ import java.io.StringWriter;
 
 public class MainXml {
     public static void main(String[] args) throws Exception {
-         Monitor monitor = new Monitor(false,27, "VG279Q", new Producer("ASUS"),
-                new String[]{"1920x1080","144Гц"});
+         Monitor monitor = new Monitor(false, 27, "VG279Q", new Producer("ASUS"),
+                new String[]{"1920x1080", "144Гц"});
         /* Получаем контекст для доступа к АПИ */
         JAXBContext context = JAXBContext.newInstance(Monitor.class);
         /* Создаем сериализатор */

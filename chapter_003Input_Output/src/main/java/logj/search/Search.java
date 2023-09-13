@@ -1,8 +1,7 @@
-package search;
+package logj.search;
 
 
 import java.io.IOException;
-import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,7 +16,7 @@ public class Search {
         if (filePath(args[0])) {
             throw new IllegalArgumentException("Path incorrect. Usage java -jar search-1.jar ROOT_FOLDER File_Type.");
         }
-        if(typeFile(args[1])) {
+        if (typeFile(args[1])) {
             throw new IllegalArgumentException("File type incorrect. Usage java -jar search-1.jar ROOT_FOLDER File_Type.");
         }
         String path = args[0];
@@ -31,7 +30,7 @@ public class Search {
         boolean resualt = true;
         if (path.matches("^[A-Z]{1}:[\\a-zA-Za-яА-Я0-9]*$")) {
         Path file = Paths.get(path);
-        resualt=!Files.exists(file);
+        resualt = !Files.exists(file);
         }
         return resualt;
     }

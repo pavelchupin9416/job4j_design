@@ -18,8 +18,8 @@ public class Config {
 
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
-            read.lines().filter(x -> !x.startsWith("#") && x.length()>0).forEach(line -> {
-                        if (line.contains("=") && line.indexOf("=")!=0 && line.substring(line.indexOf("=")).length()>1) {
+            read.lines().filter(x -> !x.startsWith("#") && x.length() > 0).forEach(line -> {
+                        if (line.contains("=") && line.indexOf("=") != 0 && line.substring(line.indexOf("=")).length() > 1) {
                             int index = line.indexOf("=");
                             values.put(line.substring(0, index), line.substring(index + 1));
                         } else {

@@ -16,7 +16,7 @@ public class TableEditor implements AutoCloseable {
         initConnection();
     }
 
-    private void initConnection() throws Exception{
+    private void initConnection() throws Exception {
         Class.forName(properties.getProperty("hibernate.connection.driver_class"));
         String url = properties.getProperty("hibernate.connection.url");
         String login =  properties.getProperty("hibernate.connection.username");
@@ -53,14 +53,14 @@ public class TableEditor implements AutoCloseable {
 
     public void dropColumn(String tableName, String columnName) throws SQLException {
             String sql = String.format(
-                    "ALTER TABLE  %s DROP  %s;",tableName, columnName
+                    "ALTER TABLE  %s DROP  %s;", tableName, columnName
             );
             execute(sql);
     }
 
     public void renameColumn(String tableName, String columnName, String newColumnName) throws SQLException {
             String sql = String.format(
-                    "ALTER TABLE  %s  RENAME  %s  TO  %s ;", tableName ,columnName, newColumnName
+                    "ALTER TABLE  %s  RENAME  %s  TO  %s ;", tableName, columnName, newColumnName
             );
             execute(sql);
     }
@@ -93,18 +93,18 @@ public class TableEditor implements AutoCloseable {
     }
     public static void main(String[] args) throws Exception {
         Properties properties = new Properties();
-        try(InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("database.properties")) {
+        try (InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("database.properties")) {
 
             properties.load(in);
         }
-        try ( TableEditor tableEditor = new TableEditor(properties)) {
+        try (TableEditor tableEditor = new TableEditor(properties)) {
             tableEditor.createTable("demo_table");
             System.out.println(getTableScheme(connection, "demo_table"));
-            tableEditor.addColumn("demo_table","new_colum","text");
+            tableEditor.addColumn("demo_table", "new_colum", "text");
             System.out.println(getTableScheme(connection, "demo_table"));
-            tableEditor.renameColumn("demo_table","new_colum","new_colum_1");
+            tableEditor.renameColumn("demo_table", "new_colum", "new_colum_1");
             System.out.println(getTableScheme(connection, "demo_table"));
-            tableEditor.dropColumn("demo_table","new_colum_1");
+            tableEditor.dropColumn("demo_table", "new_colum_1");
             System.out.println(getTableScheme(connection, "demo_table"));
             tableEditor.dropTable("demo_table");
         }

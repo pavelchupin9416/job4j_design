@@ -1,10 +1,9 @@
-package args;
+package filefinder;
 
-import java.security.Key;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ArgsName {
+public class Args {
     private final Map<String, String> values = new HashMap<>();
 
     public String get(String key) {
@@ -41,17 +40,9 @@ public class ArgsName {
         }
     }
 
-    public static ArgsName of(String[] args) {
-        ArgsName names = new ArgsName();
+    public static Args of(String[] args) {
+        Args names = new Args();
         names.parse(args);
         return names;
-    }
-
-    public static void main(String[] args) {
-        ArgsName jvm = ArgsName.of(new String[] {"-Xmx=512", "-encoding=UTF-8"});
-        System.out.println(jvm.get("Xmx"));
-
-        ArgsName zip = ArgsName.of(new String[] {"-out=project.zip", "-encoding=UTF-8"});
-        System.out.println(zip.get("out"));
     }
 }

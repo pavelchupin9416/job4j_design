@@ -9,8 +9,8 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        final  Monitor monitor = new Monitor(false,27, "VG279Q", new Producer("ASUS"),
-                new String[]{"1920x1080","144Гц"});
+        final  Monitor monitor = new Monitor(false, 27, "VG279Q", new Producer("ASUS"),
+                new String[]{"1920x1080", "144Гц"});
 
         /* JSONObject из json-строки строки */
         JSONObject jsonProducer = new JSONObject("{\"name\":\"ASUS\"}");
@@ -23,9 +23,9 @@ public class Main {
 
         /* JSONObject напрямую методом put */
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("curved_screen", monitor.isCurved_screen());
+        jsonObject.put("curved_screen", monitor.isCurvedScreen());
         jsonObject.put("diagonal", monitor.getDiagonal());
-        jsonObject.put("name_model", monitor.getName_model());
+        jsonObject.put("name_model", monitor.getNameModel());
         jsonObject.put("producer", jsonProducer);
         jsonObject.put("characteristics", jsonCharacteristics);
 
@@ -44,7 +44,7 @@ public class Main {
                 "{"
                         + "\"curved_screen\":false,"
                         + "\"diagonal\":35,"
-                        +"\"name_model\":27GN600,"
+                        + "\"name_model\":27GN600,"
                         + "\"producer\":"
                         + "{"
                         + "\"name\":\"LG\""

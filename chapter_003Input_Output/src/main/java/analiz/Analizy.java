@@ -14,12 +14,12 @@ public class Analizy {
             in.lines().forEach(line -> {
                if ((line.startsWith("400") || line.startsWith("500")) && statusServer) {
                    int index = line.indexOf(" ");
-                   out.print(line.substring(index + 1)+";");
+                   out.print(line.substring(index + 1) + ";");
                    statusServer = false;
                }
                if ((line.startsWith("200") || line.startsWith("300")) && !statusServer) {
                    int index = line.indexOf(" ");
-                   out.print(line.substring(index + 1)+";"+System.lineSeparator());
+                   out.print(line.substring(index + 1) + ";" + System.lineSeparator());
                    statusServer = true;
                }
            });

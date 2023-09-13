@@ -1,4 +1,4 @@
-package search;
+package logj.search;
 
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
